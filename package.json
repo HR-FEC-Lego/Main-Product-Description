@@ -1,0 +1,44 @@
+{
+  "name": "main-product-description",
+  "version": "1.0.0",
+  "description": "Product Description / Shopping Options. NOT product image gallery.",
+  "main": "server.js",
+  "scripts": {
+    "build": "webpack --watch",
+    "nodemonRun": "nodemon server/server.js",
+    "start": "npm run build & npm run nodemonRun",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CaytonCodes/Main-Product-Description.git"
+  },
+  "author": "Scotty Cayton",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CaytonCodes/Main-Product-Description/issues"
+  },
+  "homepage": "https://github.com/CaytonCodes/Main-Product-Description#readme",
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-react": "^7.12.10",
+    "babel-loader": "^8.2.2",
+    "eslint": "^7.17.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "nodemon": "^2.0.7",
+    "webpack": "^5.14.0",
+    "webpack-cli": "^4.3.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "jquery": "^3.5.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  }
+}
