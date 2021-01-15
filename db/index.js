@@ -15,18 +15,26 @@ connection.connect((err) => {
 function getItemData(itemNum, callback) {
   const itemStr = itemNum ? `WHERE 'itemNum' = '${itemNum}'` : '';
   const queryStr = 'SELECT * FROM itemData';
-  console.log(`${queryStr} ${itemStr}`);
   connection.query(`${queryStr} ${itemStr}`, (err, data) => {
     if (err) {
-      console.log('err in db');
-      console.log(err);
       callback(err);
     } else {
-      console.log('success in db');
-      console.log(data);
       callback(null, data);
     }
   });
-};
+}
+
+function getUserData(userNum, callback) {
+  const userStr = userNum ? `WHERE userNum = ${userNum}` : '';
+  const queryStr = 'SELECT * FROM userData';
+  connection.query(`${queryStr} ${userStr}`, (err, data) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(null, data);
+    }
+  });
+}
 
 module.exports.getItemData = getItemData;
+module.exports.getUserData = getUserData;

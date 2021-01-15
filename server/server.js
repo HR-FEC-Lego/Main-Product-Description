@@ -13,8 +13,24 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.get('/api/itemData', (req, res) => {
   db.getItemData(null, (err, data) => {
     if (err) {
-      console.log('err in db');
-    } else { console.log(data); }
+      res.writeHead(400);
+      res.end(JSON.stringify(err));
+    } else {
+      res.writeHead(200);
+      res.end(JSON.stringify(data));
+    }
+  });
+});
+
+app.get('/api/userData', (req, res) => {
+  db.getUserData(null, (err, data) => {
+    if (err) {
+      res.writeHead(400);
+      res.end(JSON.stringify(err));
+    } else {
+      res.writeHead(200);
+      res.end(JSON.stringify(data));
+    }
   });
 });
 
