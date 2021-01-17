@@ -1,4 +1,8 @@
-.DS_Store
-node_modules/
-dist/
-db/mysql.config.js
+**/.DS_Store
+**/node_modules
+**/bower_components
+**/lib
+**/vendor
+**/*.min.js
+**/db/mysql.config.js
+**/client/dist/
