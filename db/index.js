@@ -1,7 +1,7 @@
 const mysql = require('mysql');
-const connectionData = require('./mysql.config.js');
+const { connectionData, dbName } = require('./mysql.config.js');
 
-const connection = mysql.createConnection(connectionData);
+const connection = mysql.createConnection({ ...connectionData, database: dbName });
 
 connection.connect((err) => {
   if (err) {
@@ -12,7 +12,7 @@ connection.connect((err) => {
 });
 
 // query to get all item data -- used for dev
-function getItemData(itemNum, callback) {
+exports.getItemData = (itemNum, callback) => {
   const itemStr = itemNum ? `WHERE 'itemNum' = '${itemNum}'` : '';
   const queryStr = 'SELECT * FROM itemData';
   connection.query(`${queryStr} ${itemStr}`, (err, data) => {
@@ -22,9 +22,9 @@ function getItemData(itemNum, callback) {
       callback(null, data);
     }
   });
-}
+};
 
-function getUserData(userNum, callback) {
+exports.getUserData = (userNum, callback) => {
   const userStr = userNum ? `WHERE userNum = ${userNum}` : '';
   const queryStr = 'SELECT * FROM userData';
   connection.query(`${queryStr} ${userStr}`, (err, data) => {
@@ -34,7 +34,12 @@ function getUserData(userNum, callback) {
       callback(null, data);
     }
   });
-}
+};
 
-module.exports.getItemData = getItemData;
-module.exports.getUserData = getUserData;
+exports.closeOut = (callback) => {
+  connection.end((err) => {
+    if (err) {
+      callback(err);
+    } else { callback(null); }
+  });
+};
