@@ -3,11 +3,17 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import MainProductDetail from '../client/src/components/MainProductDetail.jsx';
 
-test('MainProductDetail renders something', () => {
+describe('MainProductDetail', () => {
   const wrap = shallow(<MainProductDetail itemNum={1082} userNum={1149} />);
-  console.log(wrap.debug());// -- prints the html
-  const appState = wrap.state();
-  expect(wrap).toExist();
-  // expect(wrap.find('.MainProductDetail')).to.have.lengthOf(1);
-  expect(wrap.state()).toEqual(appState);
+
+  test('renders', () => {
+    // console.log(wrap.debug());// -- prints the html
+    expect(wrap).toExist();
+    expect(wrap.find('.MainProductDetail')).toHaveLength(1);
+  });
+
+  test('should have X children', () => {
+    console.log('update the child count test');
+    expect(wrap.children()).toHaveLength(2);
+  });
 });

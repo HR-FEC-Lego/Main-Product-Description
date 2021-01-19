@@ -15,6 +15,7 @@
       "/client/dist"
     ],
     "setupFilesAfterEnv": [
+      "<rootDir>enzymeConfig.js",
       "jest-enzyme"
     ],
     "testEnvironment": "enzyme",
