@@ -10,26 +10,36 @@ app.use(express.static(path.resolve('client', 'dist')));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.get('/api/itemData', (req, res) => {
-  db.getItemData(null, (err, data) => {
+app.get('/api/itemData/:itemNum?', (req, res) => {
+  db.getItemData(req.params.itemNum || req.query.itemNum, (err, data) => {
     if (err) {
       res.writeHead(400);
       res.end(JSON.stringify(err));
     } else {
+      const newData = [];
+      for (let i = 0; i < data.length; i += 1) {
+        newData[i] = { ...data[i] };
+      }
       res.writeHead(200);
-      res.end(JSON.stringify(data));
+      res.end(JSON.stringify(newData));
     }
   });
 });
 
-app.get('/api/userData', (req, res) => {
-  db.getUserData(null, (err, data) => {
+app.get('/api/userData/:userNum?', (req, res) => {
+  db.getUserData(req.params.userNum || req.query.userNum, (err, data) => {
     if (err) {
       res.writeHead(400);
       res.end(JSON.stringify(err));
     } else {
+      const newData = [];
+      for (let i = 0; i < data.length; i += 1) {
+        newData[i] = { ...data[i] };
+        newData[i].wishListItems = newData[i].wishListItems.split('/');
+        newData[i].watchListItems = newData[i].watchListItems.split('/');
+      }
       res.writeHead(200);
-      res.end(JSON.stringify(data));
+      res.end(JSON.stringify(newData));
     }
   });
 });

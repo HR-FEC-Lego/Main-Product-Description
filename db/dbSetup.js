@@ -46,7 +46,6 @@ exports.closeOut = (callback) => {
 };
 
 exports.addUserData = (userData, userCols, callback) => {
-  // const itemDataString = itemData.join(',');
   const queryStr = 'INSERT INTO userData (??) VALUES ? ON DUPLICATE KEY UPDATE userNum=userNum+1';
   connection.query(queryStr, [userCols, userData], (err, data) => {
     if (err) {
