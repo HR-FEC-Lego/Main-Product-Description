@@ -13,26 +13,50 @@ connection.connect((err) => {
 
 // query to get all item data -- used for dev
 exports.getItemData = (itemNum, callback) => {
-  const itemStr = itemNum ? `WHERE 'itemNum' = '${itemNum}'` : '';
+  let random = false;
+  let pick;
+  let itemStr = itemNum ? `WHERE itemNum = ${itemNum}` : '';
   const queryStr = 'SELECT * FROM itemData';
+  if (itemNum < 1000) {
+    itemStr = '';
+    random = true;
+  }
   connection.query(`${queryStr} ${itemStr}`, (err, data) => {
     if (err) {
       callback(err);
     } else {
+      if (random === true) {
+        pick = Math.floor(Math.random() * data.length);
+        callback(null, [data[pick]]);
+        return null;
+      }
       callback(null, data);
     }
+    return data;
   });
 };
 
 exports.getUserData = (userNum, callback) => {
-  const userStr = userNum ? `WHERE userNum = ${userNum}` : '';
+  let random = false;
+  let pick;
+  let userStr = userNum ? `WHERE userNum = ${userNum}` : '';
   const queryStr = 'SELECT * FROM userData';
+  if (userNum < 1000) {
+    userStr = '';
+    random = true;
+  }
   connection.query(`${queryStr} ${userStr}`, (err, data) => {
     if (err) {
       callback(err);
     } else {
+      if (random === true) {
+        pick = Math.floor(Math.random() * data.length);
+        callback(null, [data[pick]]);
+        return null;
+      }
       callback(null, data);
     }
+    return data;
   });
 };
 
