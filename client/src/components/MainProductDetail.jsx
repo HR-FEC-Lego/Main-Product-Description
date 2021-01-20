@@ -2,7 +2,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Requests from '../Requests.jsx';
-import { ExclusiveTags, SeriesImage } from './functionalComps.jsx';
+import { ExclusiveTags, SeriesImage, ItemName } from './functionalComps.jsx';
+import ReviewRating from './ReviewRating.jsx';
 
 class MainProductDetail extends React.Component {
   constructor(props) {
@@ -44,6 +45,8 @@ class MainProductDetail extends React.Component {
       <div className="MainProductDetail">
         <ExclusiveTags arr={itemData.itemExclusiveTags} />
         <SeriesImage seriesName={itemData.itemSeriesTags[0]} imageLink={itemData.seriesImagePath} />
+        <ItemName itemName={itemData.itemName} />
+        <ReviewRating rating={itemData.itemRating} reviewCount={itemData.itemReviewCount} />
         <div>{JSON.stringify(this.state)}</div>
       </div>
     );

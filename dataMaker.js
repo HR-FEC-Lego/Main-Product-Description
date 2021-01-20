@@ -26,7 +26,7 @@ for (let i = 0; i < 100; i += 1) {
     itemBackOrder: faker.random.number(1),
     itemStockLimitations: faker.random.number(9),
     itemExclusiveTags: faker.lorem.words(faker.random.number(3)).split(' ').join('/'),
-    itemSeriesTags: faker.lorem.words(faker.random.number(3)).split(' ').join('/'),
+    itemSeriesTags: faker.lorem.words(faker.random.number({ min: 1, max: 4 })).split(' ').join('/'),
     seriesImagePath: faker.image.imageUrl(),
     itemAgeRatingBottom: bottomAge,
     itemAgeRatingTop: faker.random.number({ min: bottomAge }),

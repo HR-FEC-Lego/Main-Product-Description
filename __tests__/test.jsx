@@ -21,6 +21,7 @@ describe('MainProductDetail', () => {
 
   test('should have X children', () => {
     console.log('update the child count test');
+    console.log(wrap.instance());
     expect(wrap.children()).toHaveLength(2);
   });
 

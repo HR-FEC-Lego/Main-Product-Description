@@ -21,13 +21,26 @@ export function SeriesImage(props) {
     // eslint-disable-next-line no-alert
     alert(`Series Image Clicked rerouting to: ${seriesName} page`);
   }
+  if (imageLink) {
+    return (
+      <input type="image" src={imageLink} alt="series Image" onClick={handleClick} className="SeriesImage" />
+    );
+  }
+  return (<div> </div>);
+}
 
-  return (
-    <input type="image" src={imageLink} alt="series Image" onClick={handleClick} className="SeriesImage" />
-  );
+export function ItemName(props) {
+  const { itemName } = props;
+  if (itemName) {
+    return (
+      <div className="ItemName"><h2>{itemName}</h2></div>
+    );
+  }
+  return (<div> </div>);
 }
 
 export default {
   ExclusiveTags,
   SeriesImage,
+  ItemName,
 };

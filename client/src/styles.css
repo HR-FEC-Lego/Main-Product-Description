@@ -16,5 +16,14 @@ body {
 
 .SeriesImage {
   display: inline;
-  inline-size: 100px;
+  max-inline-size: 100px;
+}
+
+.RatingStars {
+  display: inline-block;
+}
+
+.ReviewCount {
+  display: inline-block;
+  margin: 10px;
 }
