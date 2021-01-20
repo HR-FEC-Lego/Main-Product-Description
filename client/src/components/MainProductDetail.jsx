@@ -1,7 +1,8 @@
 /* eslint-disable import/extensions */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Requests from './Requests.jsx';
+import Requests from '../Requests.jsx';
+import { ExclusiveTags } from './functionalComps.jsx';
 
 class MainProductDetail extends React.Component {
   constructor(props) {
@@ -11,8 +12,8 @@ class MainProductDetail extends React.Component {
   }
 
   componentDidMount() {
-    // set itemNum and userNum to 0 for random entries.
     const { itemNum, userNum } = this.props;
+    // const { itemNum, userNum } = { itemNum: 0, userNum: 0 }; // use this line for random data.
     Requests.userDataGet(userNum, (userErr, data) => {
       if (userErr) {
         throw (userErr);
@@ -23,8 +24,6 @@ class MainProductDetail extends React.Component {
             throw (err);
           } else {
             const itemData = JSON.parse(itemDataOut)[0];
-            console.log(userData);
-            console.log(itemData);
             this.setState({ itemData, userData });
           }
         });
@@ -33,9 +32,17 @@ class MainProductDetail extends React.Component {
   }
 
   render() {
+    console.log(this.state);
+    const { itemData, userData } = this.state;
+    // eslint-disable-next-line react/destructuring-assignment
+    if (!(itemData)) {
+      return (
+        <div className="MainProductDetail">Ain&apos;t no state up in here!</div>
+      );
+    }
     return (
       <div className="MainProductDetail">
-        <div>React App Running!</div>
+        <ExclusiveTags arr={itemData.itemExclusiveTags} />
         <div>{JSON.stringify(this.state)}</div>
       </div>
     );

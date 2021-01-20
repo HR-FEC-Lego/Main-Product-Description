@@ -1,4 +1,14 @@
+body {
+  background-color: grey;
+}
+
 .MainProductDetail {
-  background-color: aquamarine;
-  border: 5px solid black;
+  background-color: whitesmoke;
+}
+
+.ExclusiveTag {
+  display: inline-block;
+  background-color: yellow;
+  padding: 5px;
+  margin: 10px;
 }

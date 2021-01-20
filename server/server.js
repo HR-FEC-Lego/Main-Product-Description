@@ -19,6 +19,8 @@ app.get('/api/itemData/:itemNum?', (req, res) => {
       const newData = [];
       for (let i = 0; i < data.length; i += 1) {
         newData[i] = { ...data[i] };
+        newData[i].itemExclusiveTags = newData[i].itemExclusiveTags.split('/');
+        newData[i].itemSeriesTags = newData[i].itemSeriesTags.split('/');
       }
       res.writeHead(200);
       res.end(JSON.stringify(newData));
