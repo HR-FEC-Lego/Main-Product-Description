@@ -4,6 +4,7 @@ body {
 
 .MainProductDetail {
   background-color: whitesmoke;
+  padding: 10px;
 }
 
 .ExclusiveTag {
@@ -11,4 +12,9 @@ body {
   background-color: yellow;
   padding: 5px;
   margin: 10px;
+}
+
+.SeriesImage {
+  display: inline;
+  inline-size: 100px;
 }

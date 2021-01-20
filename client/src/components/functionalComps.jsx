@@ -13,6 +13,21 @@ export function ExclusiveTags(props) {
   );
 }
 
+export function SeriesImage(props) {
+  let { seriesName, imageLink } = props;
+
+  function handleClick(e) {
+    e.preventDefault();
+    // eslint-disable-next-line no-alert
+    alert(`Series Image Clicked rerouting to: ${seriesName} page`);
+  }
+
+  return (
+    <input type="image" src={imageLink} alt="series Image" onClick={handleClick} className="SeriesImage" />
+  );
+}
+
 export default {
   ExclusiveTags,
+  SeriesImage,
 };

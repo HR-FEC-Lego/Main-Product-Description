@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Requests from '../Requests.jsx';
-import { ExclusiveTags } from './functionalComps.jsx';
+import { ExclusiveTags, SeriesImage } from './functionalComps.jsx';
 
 class MainProductDetail extends React.Component {
   constructor(props) {
@@ -43,6 +43,7 @@ class MainProductDetail extends React.Component {
     return (
       <div className="MainProductDetail">
         <ExclusiveTags arr={itemData.itemExclusiveTags} />
+        <SeriesImage seriesName={itemData.itemSeriesTags[0]} imageLink={itemData.seriesImagePath} />
         <div>{JSON.stringify(this.state)}</div>
       </div>
     );
