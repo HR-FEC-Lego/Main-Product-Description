@@ -10,7 +10,9 @@ class MainProductDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      purchaseQuant: 0,
     };
+    this.addToCart = this.addToCart.bind(this);
   }
 
   componentDidMount() {
@@ -25,6 +27,12 @@ class MainProductDetail extends React.Component {
         this.setState(res);
       }
     });
+  }
+
+  addToCart(quantity) {
+    // eslint-disable-next-line no-alert
+    alert(`${quantity} added to cart`);
+    this.setState({ purchaseQuant: quantity });
   }
 
   render() {
@@ -45,7 +53,12 @@ class MainProductDetail extends React.Component {
         <funcComps.ItemName itemName={itemData.itemName} />
         <ReviewRating rating={itemData.itemRating} reviewCount={itemData.itemReviewCount} />
         <funcComps.ItemPrice itemPrice={itemData.itemPrice} />
-        <AddToCart inStock={itemData.itemInStock} backOrder={itemData.itemBackOrder} />
+        <AddToCart
+          inStock={itemData.itemInStock}
+          backOrder={itemData.itemBackOrder}
+          quantLimit={itemData.itemStockLimitations}
+          addToCart={this.addToCart}
+        />
         <div>{JSON.stringify(this.state)}</div>
       </div>
     );

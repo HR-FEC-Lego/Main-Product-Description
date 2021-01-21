@@ -3,6 +3,7 @@ import React from 'react';
 
 export function ExclusiveTags(props) {
   const { arr } = props;
+  if (!(arr[0])) { return null; }
   const tagItems = arr.map((tag, index) => (
     <div className="ExclusiveTag" id={tag} key={index}>
       {tag}
