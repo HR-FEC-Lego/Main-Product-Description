@@ -2,8 +2,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Requests from '../Requests.jsx';
-import { ExclusiveTags, SeriesImage, ItemName } from './functionalComps.jsx';
+import funcComps from './functionalComps.jsx';
 import ReviewRating from './ReviewRating.jsx';
+import AddToCart from './AddToCart.jsx';
 
 class MainProductDetail extends React.Component {
   constructor(props) {
@@ -15,25 +16,18 @@ class MainProductDetail extends React.Component {
   componentDidMount() {
     const { itemNum, userNum } = this.props;
     // const { itemNum, userNum } = { itemNum: 0, userNum: 0 }; // use this line for random data.
-    Requests.userDataGet(userNum, (userErr, data) => {
-      if (userErr) {
-        throw (userErr);
+    Requests.getBoth(itemNum, userNum, (err, res) => {
+      if (err) {
+        throw (err);
       } else {
-        const userData = JSON.parse(data)[0];
-        Requests.itemDataGet((itemNum), (err, itemDataOut) => {
-          if (err) {
-            throw (err);
-          } else {
-            const itemData = JSON.parse(itemDataOut)[0];
-            this.setState({ itemData, userData });
-          }
-        });
+        console.log('client response');
+        console.log(res);
+        this.setState(res);
       }
     });
   }
 
   render() {
-    console.log(this.state);
     const { itemData, userData } = this.state;
     // eslint-disable-next-line react/destructuring-assignment
     if (!(itemData)) {
@@ -43,10 +37,15 @@ class MainProductDetail extends React.Component {
     }
     return (
       <div className="MainProductDetail">
-        <ExclusiveTags arr={itemData.itemExclusiveTags} />
-        <SeriesImage seriesName={itemData.itemSeriesTags[0]} imageLink={itemData.seriesImagePath} />
-        <ItemName itemName={itemData.itemName} />
+        <funcComps.ExclusiveTags arr={itemData.itemExclusiveTags} />
+        <funcComps.SeriesImage
+          seriesName={itemData.itemSeriesTags[0]}
+          imageLink={itemData.seriesImagePath}
+        />
+        <funcComps.ItemName itemName={itemData.itemName} />
         <ReviewRating rating={itemData.itemRating} reviewCount={itemData.itemReviewCount} />
+        <funcComps.ItemPrice itemPrice={itemData.itemPrice} />
+        <AddToCart inStock={itemData.itemInStock} backOrder={itemData.itemBackOrder} />
         <div>{JSON.stringify(this.state)}</div>
       </div>
     );

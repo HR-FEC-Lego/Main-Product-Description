@@ -23,7 +23,7 @@ for (let i = 0; i < 100; i += 1) {
     itemRating: faker.finance.amount(0, 5, 1),
     itemReviewCount: faker.random.number(9999),
     itemInStock: faker.random.number(1),
-    itemBackOrder: faker.random.number(1),
+    itemBackOrder: faker.random.arrayElement([null, faker.random.number(120)]),
     itemStockLimitations: faker.random.number(9),
     itemExclusiveTags: faker.lorem.words(faker.random.number(3)).split(' ').join('/'),
     itemSeriesTags: faker.lorem.words(faker.random.number({ min: 1, max: 4 })).split(' ').join('/'),
@@ -41,6 +41,7 @@ for (let i = 0; i < 100; i += 1) {
     activeUser: faker.random.number(1),
     wishListItems: listGen(),
     watchListItems: listGen(),
+    userCart: listGen(),
   };
   itemDataSet.push([...Object.values(data)]);
   userDataSet.push([...Object.values(userData)]);

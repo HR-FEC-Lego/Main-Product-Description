@@ -14,6 +14,13 @@ const Requests = {
       callback(null, itemData);
     });
   },
+
+  getBoth(itemNum, userNum, callback) {
+    const reqData = { itemNum, userNum };
+    $.get('/api/itemAndUser', reqData, (res) => {
+      callback(null, res);
+    });
+  },
 };
 
 export default Requests;

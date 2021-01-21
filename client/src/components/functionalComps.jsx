@@ -39,8 +39,23 @@ export function ItemName(props) {
   return (<div> </div>);
 }
 
+export function ItemPrice(props) {
+  const { itemPrice } = props;
+  if (itemPrice) {
+    return (
+      <div className="ItemPrice">
+        <h1>
+          $
+          {itemPrice}
+        </h1>
+      </div>
+    );
+  }
+}
+
 export default {
   ExclusiveTags,
   SeriesImage,
   ItemName,
+  ItemPrice,
 };
