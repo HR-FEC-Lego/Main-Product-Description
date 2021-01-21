@@ -127,13 +127,13 @@ function QuantLimits(props) {
 function PurchaseButton(props) {
   const { buyAble, buttonText, purchaseHandler } = props;
 
-  if (!buyAble) {
-    return (
-      <div className="OutOfStockButton">Out of Stock</div>
-    );
-  }
+  // if (!buyAble) {
+  //   return (
+  //     <div className="OutOfStockButton">Out of Stock</div>
+  //   );
+  // }
   return (
-    <button type="button" className="PurchaseButton" onClick={purchaseHandler}>{buttonText}</button>
+    <button type="button" className="PurchaseButton" onClick={purchaseHandler} disabled={!buyAble}>{buttonText}</button>
   );
 }
 

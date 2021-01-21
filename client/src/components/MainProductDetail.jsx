@@ -5,6 +5,7 @@ import Requests from '../Requests.jsx';
 import funcComps from './functionalComps.jsx';
 import ReviewRating from './ReviewRating.jsx';
 import AddToCart from './AddToCart.jsx';
+import UserLists from './UserLists.jsx';
 
 class MainProductDetail extends React.Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class MainProductDetail extends React.Component {
       purchaseQuant: 0,
     };
     this.addToCart = this.addToCart.bind(this);
+    this.listUpdate = this.listUpdate.bind(this);
   }
 
   componentDidMount() {
@@ -33,6 +35,17 @@ class MainProductDetail extends React.Component {
     // eslint-disable-next-line no-alert
     alert(`${quantity} added to cart`);
     this.setState({ purchaseQuant: quantity });
+  }
+
+  listUpdate(list) {
+    const {
+      itemData: { itemNum },
+      userData: { userNum },
+    } = this.state;
+    console.log(itemNum);
+    console.log(userNum);
+    console.log(list);
+    // Reqests.listAdd(itemNum, userNum);
   }
 
   render() {
@@ -58,6 +71,14 @@ class MainProductDetail extends React.Component {
           backOrder={itemData.itemBackOrder}
           quantLimit={itemData.itemStockLimitations}
           addToCart={this.addToCart}
+        />
+        <UserLists
+          itemNum={itemData.itemNum}
+          inStock={itemData.itemInStock}
+          backOrder={itemData.itemBackOrder}
+          wishList={userData.wishListItems}
+          watchList={userData.watchListItems}
+          listUpdate={this.listUpdate}
         />
         <div>{JSON.stringify(this.state)}</div>
       </div>
