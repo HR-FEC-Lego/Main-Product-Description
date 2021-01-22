@@ -6,6 +6,7 @@ import funcComps from './functionalComps.jsx';
 import ReviewRating from './ReviewRating.jsx';
 import AddToCart from './AddToCart.jsx';
 import UserLists from './UserLists.jsx';
+import SeriesLinks from './SeriesLinks.jsx';
 
 class MainProductDetail extends React.Component {
   constructor(props) {
@@ -19,13 +20,10 @@ class MainProductDetail extends React.Component {
 
   componentDidMount() {
     const { itemNum, userNum } = this.props;
-    // const { itemNum, userNum } = { itemNum: 0, userNum: 0 }; // use this line for random data.
     Requests.getBoth(itemNum, userNum, (err, res) => {
       if (err) {
         throw (err);
       } else {
-        console.log('client response');
-        console.log(res);
         this.setState(res);
       }
     });
@@ -42,9 +40,16 @@ class MainProductDetail extends React.Component {
       itemData: { itemNum },
       userData: { userNum },
     } = this.state;
-    console.log(itemNum);
-    console.log(userNum);
-    console.log(list);
+    const {
+      userData: {
+        [list]: listItems,
+        ...otherUserData
+      },
+    } = this.state;
+    listItems.push(itemNum.toString());
+    this.setState({ userData: { [list]: listItems, ...otherUserData } });
+    // console.log(itemNum);
+    // console.log(userNum);
     // Reqests.listAdd(itemNum, userNum);
   }
 
@@ -80,6 +85,8 @@ class MainProductDetail extends React.Component {
           watchList={userData.watchListItems}
           listUpdate={this.listUpdate}
         />
+        <div>Check Store Stock - Stretch Goal</div>
+        <SeriesLinks seriesTags={itemData.itemSeriesTags} />
         <div>{JSON.stringify(this.state)}</div>
       </div>
     );

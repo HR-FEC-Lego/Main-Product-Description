@@ -11,6 +11,8 @@ app.use(express.static(path.resolve('client', 'dist')));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
+app.use('/itemData/:itemNum', express.static(path.join(__dirname, '../dist')));
+
 app.get('/api/itemData/:itemNum?', (req, res) => {
   db.getItemData(req.params.itemNum || req.query.itemNum, (err, data) => {
     if (err) {
