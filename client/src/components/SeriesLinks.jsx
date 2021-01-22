@@ -8,7 +8,7 @@ function SeriesLinks(props) {
       <ul className="SeriesLinksList">
         {seriesTags.map((tag, index) => (
           <li key={index} className="SeriesLinkEntry">
-            <a href={`/en-us/categories/${tag}`}>{tag}</a>
+            <a href={`https://www.lego.com/en-us/categories/${tag}`}>{tag}</a>
           </li>
         ))}
       </ul>

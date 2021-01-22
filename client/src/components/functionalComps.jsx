@@ -16,15 +16,11 @@ export function ExclusiveTags(props) {
 
 export function SeriesImage(props) {
   let { seriesName, imageLink } = props;
-
-  function handleClick(e) {
-    e.preventDefault();
-    // eslint-disable-next-line no-alert
-    alert(`Series Image Clicked rerouting to: ${seriesName} page`);
-  }
   if (imageLink) {
     return (
-      <input type="image" src={imageLink} alt="series Image" onClick={handleClick} className="SeriesImage" />
+      <a className="SeriesImageContainer" href={`https://www.lego.com/en-us/themes/${seriesName}`}>
+        <img src={imageLink} alt={`${seriesName} Series`} className="SeriesImage" />
+      </a>
     );
   }
   return (<div> </div>);
