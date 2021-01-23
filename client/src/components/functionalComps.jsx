@@ -50,9 +50,53 @@ export function ItemPrice(props) {
   }
 }
 
+export function SeriesLinks(props) {
+  const { seriesTags } = props;
+  return (
+    <div className="SeriesLinksContainer">
+      Shop more like this:
+      <ul className="SeriesLinksList">
+        {seriesTags.map((tag, index) => (
+          <li key={index} className="SeriesLinkEntry">
+            <a href={`https://www.lego.com/en-us/categories/${tag}`}>{tag}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export function OffersFlyer(props) {
+  let offerLink = 'https://www.lego.com/en-us/page/lego-offers-promotions';
+
+  let offerLinkText = 'Learn More';
+
+  const {
+    offersFlyer: offerStatement,
+    signUpOffer,
+    offersImageLink,
+  } = props;
+  if (signUpOffer) {
+    offerLinkText = 'Sign Up';
+    offerLink = 'https://www.lego.com/en-us/vip/join';
+  }
+
+  return (
+    <div className="OffersFlyerContainer">
+      <img className="OffersFlyerImage" src={offersImageLink} alt="Special Offers" />
+      <div className="OffersFlyerInternal">
+        <h4><span>{offerStatement}</span></h4>
+        <a className="OffersFlyerLink" href={offerLink}>{offerLinkText}</a>
+      </div>
+    </div>
+  );
+}
+
 export default {
   ExclusiveTags,
   SeriesImage,
   ItemName,
   ItemPrice,
+  SeriesLinks,
+  OffersFlyer,
 };

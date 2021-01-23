@@ -6,7 +6,6 @@ import funcComps from './functionalComps.jsx';
 import ReviewRating from './ReviewRating.jsx';
 import AddToCart from './AddToCart.jsx';
 import UserLists from './UserLists.jsx';
-import SeriesLinks from './SeriesLinks.jsx';
 
 class MainProductDetail extends React.Component {
   constructor(props) {
@@ -30,9 +29,12 @@ class MainProductDetail extends React.Component {
   }
 
   addToCart(quantity) {
+    let { purchaseQuant: currentQuant } = this.state;
+    currentQuant += quantity;
     // eslint-disable-next-line no-alert
     alert(`${quantity} added to cart`);
-    this.setState({ purchaseQuant: quantity });
+    this.setState({ purchaseQuant: currentQuant });
+    // Requests.cartAdd(userData.userNum, itemData.itemNum, quantity)
   }
 
   listUpdate(list) {
@@ -48,9 +50,7 @@ class MainProductDetail extends React.Component {
     } = this.state;
     listItems.push(itemNum.toString());
     this.setState({ userData: { [list]: listItems, ...otherUserData } });
-    // console.log(itemNum);
-    // console.log(userNum);
-    // Reqests.listAdd(itemNum, userNum);
+    // Reqests.listAdd(itemNum, userNum, list);
   }
 
   render() {
@@ -58,18 +58,23 @@ class MainProductDetail extends React.Component {
     // eslint-disable-next-line react/destructuring-assignment
     if (!(itemData)) {
       return (
-        <div className="MainProductDetail">Ain&apos;t no state up in here!</div>
+        <div className="MainProductDetail">Looks like this isn&apos;t an active product</div>
       );
     }
     return (
       <div className="MainProductDetail">
         <funcComps.ExclusiveTags arr={itemData.itemExclusiveTags} />
         <funcComps.SeriesImage
-          seriesName={itemData.itemSeriesTags[0]}
+          seriesName={itemData.seriesName}
           imageLink={itemData.seriesImagePath}
         />
         <funcComps.ItemName itemName={itemData.itemName} />
         <ReviewRating rating={itemData.itemRating} reviewCount={itemData.itemReviewCount} />
+        <funcComps.OffersFlyer
+          offersFlyer={itemData.offersFlyer}
+          signUpOffer={itemData.signUpOffer}
+          offersImageLink={itemData.offersImageLink}
+        />
         <funcComps.ItemPrice itemPrice={itemData.itemPrice} />
         <AddToCart
           inStock={itemData.itemInStock}
@@ -86,8 +91,8 @@ class MainProductDetail extends React.Component {
           listUpdate={this.listUpdate}
         />
         <div>Check Store Stock - Stretch Goal</div>
-        <SeriesLinks seriesTags={itemData.itemSeriesTags} />
-        <div>{JSON.stringify(this.state)}</div>
+        <funcComps.SeriesLinks seriesTags={itemData.itemSeriesTags} />
+        {/* <div>{JSON.stringify(this.state)}</div> */}
       </div>
     );
   }

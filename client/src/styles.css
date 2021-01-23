@@ -27,3 +27,18 @@ body {
   display: inline-block;
   margin: 10px;
 }
+
+.Star {
+  display: inline-block;
+  max-inline-size: 30px;
+}
+
+.WishListHeart {
+  display: inline-block;
+  max-inline-size: 40px;
+}
+
+.EmailIcon {
+  display: inline-block;
+  max-inline-size: 40px;
+}
