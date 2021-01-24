@@ -10,21 +10,18 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: ['babel-loader'],
       },
       {
-        test: /\.jsx?$/,
-        include: [path.resolve(__dirname, 'client', 'src')],
-        exclude: [path.resolve(__dirname, 'node_modules'),
-          path.resolve(__dirname, 'server'),
-          path.resolve(__dirname, 'db'),
-        ],
-        loader: 'babel-loader',
-        options: {
-          presets: ['@babel/preset-env', '@babel/preset-react'],
-        },
+        test: /\.(scss)$/,
+        exclude: /node_modules/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
     ],
+  },
+  resolve: {
+    extensions: ['.js', '.jsx', '.scss'],
   },
 };

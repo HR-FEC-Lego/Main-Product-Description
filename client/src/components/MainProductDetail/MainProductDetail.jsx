@@ -1,11 +1,12 @@
 /* eslint-disable import/extensions */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Requests from '../Requests.jsx';
-import funcComps from './functionalComps.jsx';
-import ReviewRating from './ReviewRating.jsx';
-import AddToCart from './AddToCart.jsx';
-import UserLists from './UserLists.jsx';
+import Requests from '../../Requests.jsx';
+import funcComps from '../functionalComps/functionalComps.jsx';
+import ReviewRating from '../ReviewRating/ReviewRating.jsx';
+import AddToCart from '../AddToCart/AddToCart.jsx';
+import UserLists from '../UserLists/UserLists.jsx';
+import './MainProductDetailS.css';
 
 class MainProductDetail extends React.Component {
   constructor(props) {

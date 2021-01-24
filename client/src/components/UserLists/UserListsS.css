@@ -1,0 +1,14 @@
+.SeriesImage {
+  display: inline;
+  max-inline-size: 100px;
+}
+
+.WishListHeart {
+  display: inline-block;
+  max-inline-size: 40px;
+}
+
+.EmailIcon {
+  display: inline-block;
+  max-inline-size: 40px;
+}

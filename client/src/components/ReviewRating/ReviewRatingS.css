@@ -1,0 +1,13 @@
+.RatingStars {
+  display: inline-block;
+}
+
+.ReviewCount {
+  display: inline-block;
+  margin: 10px;
+}
+
+.Star {
+  display: inline-block;
+  max-inline-size: 30px;
+}

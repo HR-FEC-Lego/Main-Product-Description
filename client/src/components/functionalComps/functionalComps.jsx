@@ -1,5 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
+import './functionalCompsS.css';
 
 export function ExclusiveTags(props) {
   const { arr } = props;
