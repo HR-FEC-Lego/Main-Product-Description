@@ -80,6 +80,9 @@ export function OffersFlyer(props) {
     offersImageLink,
   } = props;
 
+  if (!offerStatement) {
+    return ('');
+  }
   if (signUpOffer) {
     offerLinkText = 'Sign Up';
     offerLink = 'https://www.lego.com/en-us/vip/join';

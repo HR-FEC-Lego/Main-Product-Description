@@ -1,0 +1,128 @@
+.CartStyles {
+  width: 100%;
+}
+
+.Availability {
+  max-width: 100%;
+  margin: 0.3125rem 0px 1.875rem 0px;
+  color: rgb(0, 133, 55);
+  font-size: 0.875rem;
+  line-height: 1.1875rem;
+  font-weight: 400;
+}
+
+.QuantityBar {
+  display: flex;
+  margin-bottom: 1.25rem;
+  -webkit-box-align: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  .QuantitySelectWrapper {
+    display: flex;
+    flex: 0 0 auto;
+    height: 2.7rem;
+    border-radius: 5px;
+    min-width: 10rem;
+    margin-right: 1.125rem;
+    .QuantityButton {
+      position: relative;
+      cursor: pointer;
+      -webkit-box-flex: 1;
+      flex-grow: 1;
+      height: 100%;
+      border: 1px solid rgb(224, 224, 224);
+      display: flex;
+      -webkit-box-align: center;
+      align-items: center;
+      background-color: rgb(255, 255, 255);
+      -webkit-box-pack: center;
+      justify-content: center;
+      touch-action: manipulation;
+      &:focus{
+        outline: 1px solid blue;
+      }
+      &:disabled {
+        cursor: default;
+      }
+    }
+    .QuantityShow {
+      position: relative;
+      -webkit-box-flex: 1;
+      flex-grow: 1;
+      border-top: 1px solid rgb(224, 224, 224);
+      border-bottom: 1px solid rgb(224, 224, 224);
+      width: 2.5rem;
+      max-width: 5rem;
+      text-align: center;
+      padding: 0.6rem;
+    }
+  }
+  .QuantityLimit {
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    white-space: nowrap;
+    margin-top: 0.3125rem;
+    span {
+      color: rgb(44, 44, 44);
+      font-size: 0.875rem;
+      line-height: 1.1875rem;
+      font-weight: 400;
+    }
+    .InfoButton {
+      margin: 0px;
+      margin-left: 0.3125rem;
+      width: 1.125rem;
+      height: 1.125rem;
+      border: 1px solid rgb(117, 117, 117);
+      border-radius: 100%;
+      background-color: transparent;
+      padding: 0px;
+      padding-bottom: 0.125rem;
+      &:hover {
+        border: 1px solid blue;
+      }
+      &:focus {
+        outline: 0;
+      }
+      span {
+        font-size: 0.75rem;
+        line-height: 1.125rem;
+      }
+    }
+  }
+}
+
+.PurchaseButtonWrapper {
+  margin-bottom: 1.25rem;
+  width: 100%;
+  min-height: 3.125rem;
+  .PurchaseButton {
+    display: block;
+    flex-basis: 100%;
+    min-width: 100%;
+    padding: 0.9375rem;
+    border-style: solid;
+    border-radius: 4px;
+    border-collapse: collapse;
+    text-align: center;
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1.1875rem;
+    background-color: rgb(253, 128, 36);
+    border-color: rgb(253, 128, 36);
+    color: rgb(0, 0, 0);
+    position: relative;
+    border-width: 2px;
+    &:hover {
+      background-color: transparent;
+    }
+    &:focus {
+      outline: 0;
+    }
+    &:disabled {
+      display: none;
+    }
+  }
+}

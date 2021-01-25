@@ -14,17 +14,20 @@ class AddToCart extends React.Component {
     this.addToCart = addToCart;
   }
 
-  quantityUp() {
+  quantityUp(e) {
+    e.preventDefault();
     const { quantity } = this.state;
     this.setState({ quantity: quantity + 1 });
   }
 
-  quantityDown() {
+  quantityDown(e) {
+    e.preventDefault();
     const { quantity } = this.state;
     this.setState({ quantity: quantity - 1 });
   }
 
-  purchaseClick() {
+  purchaseClick(e) {
+    e.preventDefault();
     const { quantity } = this.state;
     this.addToCart(quantity);
   }
@@ -38,22 +41,32 @@ class AddToCart extends React.Component {
       buttonText = 'Add to Bag';
     } else if (backOrder) {
       buttonText = 'Backorder';
-    } else { buttonText = 'Out of Stock'; }
+    }
+    if (!buyAble) {
+      return (
+        <div className="CartOptions">
+          <Availability inStock={inStock} backOrder={backOrder} />
+        </div>
+      );
+    }
     return (
-      <div className="CartOptions">
-        <Availability inStock={inStock} backOrder={backOrder} />
-        <QuantityBar
-          quantity={quantity}
-          decreaseAction={this.quantityDown}
-          increaseAction={this.quantityUp}
-          quantLimit={quantLimit}
-        />
+      <div className="CartStyles">
+        <div className="CartOptions">
+          <Availability inStock={inStock} backOrder={backOrder} />
+          <QuantityBar
+            quantity={quantity}
+            decreaseAction={this.quantityDown}
+            increaseAction={this.quantityUp}
+            quantLimit={quantLimit}
+          />
+        </div>
         <PurchaseButton
           buyAble={buyAble}
           buttonText={buttonText}
           purchaseHandler={this.purchaseClick}
         />
       </div>
+
     );
   }
 }
@@ -68,16 +81,16 @@ function Availability(props) {
       <span>
         Backorders accepted, will ship in &nbsp;
         {backOrder}
-        &nbsp;days
+        &nbsp;days.
       </span>
     );
   } else {
-    output = <span>Currently Out of Stock.</span>;
+    output = <span style={{ color: 'red' }}>Sold Out</span>;
   }
   return (
-    <div className="Availability">
+    <p className="Availability">
       {output}
-    </div>
+    </p>
   );
 }
 
@@ -86,10 +99,12 @@ function QuantityBar(props) {
     quantity, decreaseAction, increaseAction, quantLimit
   } = props;
   return (
-    <div>
-      <QuantityButton action={decreaseAction} name="QuantityDecrease" inActive={quantity === 1} />
-      <div className="QuantityShow">{quantity}</div>
-      <QuantityButton action={increaseAction} name="QuantityIncrease" inActive={quantity >= quantLimit} />
+    <div className="QuantityBar">
+      <div className="QuantitySelectWrapper">
+        <QuantityButton action={decreaseAction} name="QuantityDecrease" inActive={quantity === 1} />
+        <div className="QuantityShow">{quantity}</div>
+        <QuantityButton action={increaseAction} name="QuantityIncrease" inActive={quantity >= quantLimit} />
+      </div>
       <QuantLimits quantLimit={quantLimit} />
     </div>
   );
@@ -97,6 +112,7 @@ function QuantityBar(props) {
 
 function QuantityButton(props) {
   let icon;
+  let borderStyle;
   let fillColor;
   const {
     action, name, inActive
@@ -108,13 +124,13 @@ function QuantityButton(props) {
   }
   if (name === 'QuantityIncrease') {
     icon = <AddIcon fill={fillColor} />;
+    borderStyle = { borderRadius: '0px 5px 5px 0px' };
   } else {
     icon = <SubtractIcon fill={fillColor} />;
+    borderStyle = { borderRadius: '5px 0px 0px 5px' };
   }
   return (
-    <div className="QuantityButton">
-      <button type="button" id={name} onClick={action} disabled={inActive}>{icon}</button>
-    </div>
+    <button className="QuantityButton" type="button" id={name} onClick={action} disabled={inActive} style={borderStyle}>{icon}</button>
   );
 }
 
@@ -132,7 +148,9 @@ function QuantLimits(props) {
         Limit &nbsp;
         {quantLimit}
       </span>
-      <button className="InfoButton" type="button" label="Click for more info" aria-label="Click for more info" onClick={popupClick}>i</button>
+      <button className="InfoButton" type="button" label="Click for more info" aria-label="Click for more info" onClick={popupClick}>
+        <span>i</span>
+      </button>
     </div>
   );
 }
@@ -141,7 +159,9 @@ function PurchaseButton(props) {
   const { buyAble, buttonText, purchaseHandler } = props;
 
   return (
-    <button type="button" className="PurchaseButton" onClick={purchaseHandler} disabled={!buyAble}>{buttonText}</button>
+    <div className="PurchaseButtonWrapper">
+      <button type="button" className="PurchaseButton" onClick={purchaseHandler} disabled={!buyAble}>{buttonText}</button>
+    </div>
   );
 }
 

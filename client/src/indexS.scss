@@ -34,8 +34,8 @@ li {
 }
 
 ul {
-  padding: 0;
-  margin: 0;
+  padding: 0px;
+  margin: 0px;
   display: block;
   list-style-type: disc;
   margin-block-start: 1em;
@@ -46,6 +46,25 @@ ul {
 
 img {
   border-style: none;
+}
+
+p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+button {
+  border: 0px;
+  padding: 0px;
+  background-color: transparent;
+  box-shadow: none;
+  cursor: pointer;
+  &:disabled {
+    cursor: default;
+  }
 }
 
 // #root{
