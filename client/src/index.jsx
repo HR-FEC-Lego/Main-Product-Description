@@ -1,11 +1,11 @@
 /* eslint-disable import/extensions */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MainProductDetail from './components/MainProductDetail.jsx';
-import css from './styles.css';
+import MainProductDetail from './components/MainProductDetail/MainProductDetail';
+import './indexS.scss';
 
-const appEl = document.getElementById('app');
-const itemNum = 1082;
-const userNum = 1149;
+const appEl = document.getElementById('root');
+const itemNum = 3002; // 2408
+const userNum = 1163;
 
 ReactDOM.render(<MainProductDetail itemNum={itemNum} userNum={userNum} />, appEl);

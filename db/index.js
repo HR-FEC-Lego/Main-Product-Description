@@ -60,6 +60,23 @@ exports.getUserData = (userNum, callback) => {
   });
 };
 
+exports.getBoth = (data, callback) => {
+  const { itemNum, userNum } = data;
+  this.getItemData(itemNum, (itemErr, itemData) => {
+    if (itemErr) {
+      callback(itemErr);
+    } else {
+      this.getUserData(userNum, (userErr, userData) => {
+        if (userErr) {
+          callback(userErr);
+        } else {
+          callback(null, { itemData, userData });
+        }
+      });
+    }
+  });
+};
+
 exports.closeOut = (callback) => {
   connection.end((err) => {
     if (err) {

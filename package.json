@@ -24,9 +24,7 @@
       "jsx"
     ],
     "moduleDirectories": [
-      "node_modules",
-      "bower_components",
-      "shared"
+      "node_modules"
     ],
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
@@ -67,7 +65,7 @@
     "jest-environment-enzyme": "^7.1.2",
     "jest-enzyme": "^7.1.2",
     "nodemon": "^2.0.7",
-    "sinon": "^9.2.3",
+    "sass": "^1.32.5",
     "style-loader": "^2.0.0",
     "webpack": "^5.14.0",
     "webpack-cli": "^4.3.1"
@@ -80,6 +78,7 @@
     "mysql": "^2.18.1",
     "prop-types": "^15.7.2",
     "react": "^16.14.0",
-    "react-dom": "^16.14.0"
+    "react-dom": "^16.14.0",
+    "sass-loader": "^10.1.1"
   }
 }
