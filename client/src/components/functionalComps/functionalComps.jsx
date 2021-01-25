@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
-import './functionalCompsS.css';
+import './functionalCompsS.scss';
 
 export function ExclusiveTags(props) {
   const { arr } = props;
@@ -11,7 +11,7 @@ export function ExclusiveTags(props) {
     </div>
   ));
   return (
-    <div>{ tagItems }</div>
+    <div className="ExclusiveTagContainer">{ tagItems }</div>
   );
 }
 
@@ -31,7 +31,9 @@ export function ItemName(props) {
   const { itemName } = props;
   if (itemName) {
     return (
-      <div className="ItemName"><h2>{itemName}</h2></div>
+      <h1 className="ItemHighlightContainer">
+        <span className="ItemName">{itemName}</span>
+      </h1>
     );
   }
   return (<div> </div>);
@@ -41,11 +43,11 @@ export function ItemPrice(props) {
   const { itemPrice } = props;
   if (itemPrice) {
     return (
-      <div className="ItemPrice">
-        <h1>
+      <div className="ItemHighlightContainer ItemPriceContainer">
+        <span className="ItemPrice">
           $
           {itemPrice}
-        </h1>
+        </span>
       </div>
     );
   }
@@ -59,7 +61,7 @@ export function SeriesLinks(props) {
       <ul className="SeriesLinksList">
         {seriesTags.map((tag, index) => (
           <li key={index} className="SeriesLinkEntry">
-            <a href={`https://www.lego.com/en-us/categories/${tag}`}>{tag}</a>
+            <a className="SeriesTag" href={`https://www.lego.com/en-us/categories/${tag}`}>{tag}</a>
           </li>
         ))}
       </ul>
@@ -77,6 +79,7 @@ export function OffersFlyer(props) {
     signUpOffer,
     offersImageLink,
   } = props;
+
   if (signUpOffer) {
     offerLinkText = 'Sign Up';
     offerLink = 'https://www.lego.com/en-us/vip/join';
@@ -86,7 +89,9 @@ export function OffersFlyer(props) {
     <div className="OffersFlyerContainer">
       <img className="OffersFlyerImage" src={offersImageLink} alt="Special Offers" />
       <div className="OffersFlyerInternal">
-        <h4><span>{offerStatement}</span></h4>
+        <h4 className="OffersFlyerText">
+          <span>{offerStatement}</span>
+        </h4>
         <a className="OffersFlyerLink" href={offerLink}>{offerLinkText}</a>
       </div>
     </div>

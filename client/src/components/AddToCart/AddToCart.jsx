@@ -1,4 +1,5 @@
 import React from 'react';
+import './AddToCartS.scss';
 
 class AddToCart extends React.Component {
   constructor(props) {

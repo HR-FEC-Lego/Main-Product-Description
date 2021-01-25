@@ -1,5 +1,5 @@
 import React from 'react';
-import './UserListsS.css';
+import './UserListsS.scss';
 
 function listChecker(list, itemNum) {
   for (let i = 0; i < list.length; i += 1) {

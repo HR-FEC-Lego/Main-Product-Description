@@ -1,0 +1,14 @@
+.MainProductDetail {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  min-width: 350px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 30%;
+  align-items: flex-start;
+  -webkit-box-pack: start;
+  justify-content: flex-start;
+  background: rgb(255, 255, 255);
+  padding: 1.125rem;
+}

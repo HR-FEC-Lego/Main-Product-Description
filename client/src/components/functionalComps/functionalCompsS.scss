@@ -1,0 +1,103 @@
+.ExclusiveTagContainer {
+  display: flex;
+  flex-wrap: wrap;
+  -webkit-box-align: cneter;
+  margin-bottom: 0.625rem;
+  &::after, &::before {
+    box-sizing: inherit;
+  }
+  .ExclusiveTag {
+    display: inline-block;
+    margin: 0px;
+    margin-right: 0.27rem;
+    padding: 0.19rem 0.625rem;
+    background: rgb(255, 207, 0);
+    color: rgb(0, 0, 0);
+    font-size: 0.75rem;
+    line-height: 1.1875rem;
+  }
+}
+
+.SeriesImageContainer {
+  display: block;
+  margin-bottom: 0.625rem;
+  .SeriesImage {
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+  }
+}
+
+.ItemHighlightContainer {
+  margin: 0px;
+  width: 100%;
+  font-weight: 500;
+  font-size: 2rem;
+  line-height: 2.6875rem;
+  .ItemPrice {
+    font-weight: 700;
+  }
+}
+
+.ItemPriceContainer {
+  margin-top: 1.875rem;
+}
+
+.SeriesLinksContainer {
+  width: 100%;
+  padding-top: 0.9375rem;
+  border-top: 1px solid rgb(224, 224, 224);
+  font-size: 0.875rem;
+  line-height: 1rem;
+  margin-bottom: 0px;
+  .SeriesLinkEntry {
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 0.3125rem;
+    margin-right: 0.625rem;
+  }
+  .SeriesTag {
+    margin: 0.3125rem;
+    margin-left: 0px;
+    font-weight: 500;
+    color: rgb(0, 109, 183);
+  }
+}
+
+.OffersFlyerContainer {
+  display: flex;
+  max-width: 100%;
+  background: rgb(230, 243, 255);
+  padding: 0.625rem 0.9375rem;
+  -webkit-box-pack: center;
+  justify-content: center;
+  margin-top: 1.25rem;
+  .OffersFlyerImage {
+    display: inline-block;
+    vertical-align: middle;
+    max-width: 100%;
+    object-fit: cover;
+    height: auto;
+    max-height: 3.75rem;
+    width: auto;
+    margin-right: 0.9375rem;
+  }
+  .OffersFlyerInternal {
+    width: 100%;
+    .OffersFlyerText {
+      display: block;
+      margin: 0px;
+      font-size: 0.875rem;
+      line-height: 1.1875rem;
+      font-weight: 500;
+    }
+    .OffersFlyerLink {
+      font-size: 0.875rem;
+      font-weight: 500;
+      line-height: 1.1875rem;
+    }
+  }
+}
+
+
