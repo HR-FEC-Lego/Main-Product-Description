@@ -99,8 +99,8 @@ class MainProductDetail extends React.Component {
 }
 
 MainProductDetail.propTypes = {
-  itemNum: PropTypes.number.isRequired,
-  userNum: PropTypes.number.isRequired,
+  itemNum: PropTypes.number,
+  userNum: PropTypes.number,
 };
 
 export default MainProductDetail;
