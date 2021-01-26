@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import MainProductDetail from './components/MainProductDetail/MainProductDetail';
 import './indexS.scss';
 
-const appEl = document.getElementById('root');
+const appEl = document.getElementById('MainProductDescription');
 const itemNum = 3002; // 2408
 const userNum = 1163;
 

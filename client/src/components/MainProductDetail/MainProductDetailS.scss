@@ -1,8 +1,8 @@
 .MainProductDetail {
   display: flex;
   flex-direction: column;
-  width: 30%;
   min-width: 350px;
+  max-width: 900px;
   flex-grow: 0;
   flex-shrink: 0;
   flex-basis: 30%;
