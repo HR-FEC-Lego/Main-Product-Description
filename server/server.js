@@ -5,7 +5,7 @@ const db = require('../db/index.js');
 const { userDataHandler, itemDataHandler } = require('./dataHandlers.js');
 
 const app = express();
-const port = 3000;
+const port = 3034;
 
 app.use(express.static(path.resolve('client', 'dist')));
 
