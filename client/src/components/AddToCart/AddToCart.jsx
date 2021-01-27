@@ -9,7 +9,7 @@ class AddToCart extends React.Component {
       modals: {
         limitModal: false,
         purchaseModal: false,
-      }
+      },
     };
     this.quantityUp = this.quantityUp.bind(this);
     this.quantityDown = this.quantityDown.bind(this);
@@ -17,7 +17,12 @@ class AddToCart extends React.Component {
     const { addToCart } = this.props;
     this.addToCart = addToCart;
     this.modalToggle = this.modalToggle.bind(this);
+    this.modalClose = this.modalClose.bind(this);
   }
+
+  // componentDidMount() {
+  //   // document.body.addEventListener('click', this.modalClose);
+  // }
 
   quantityUp(e) {
     e.preventDefault();
@@ -34,8 +39,16 @@ class AddToCart extends React.Component {
   purchaseClick(e) {
     e.preventDefault();
     const { quantity } = this.state;
+    // use modalToggle
     this.setState({ modals: { purchaseModal: true } });
     this.addToCart(quantity);
+  }
+
+  modalClose(e) {
+    e.preventDefault();
+    console.log(e);
+    document.body.removeEventListener('click', this.modalClose);
+    this.setState({ modals: { purchaseModal: false, limitModal: false } });
   }
 
   modalToggle(e, type) {
@@ -46,6 +59,9 @@ class AddToCart extends React.Component {
         ...otherModalData
       },
     } = this.state;
+    if (!modalState) {
+      document.body.addEventListener('click', this.modalClose);
+    }
     this.setState({ modals: { [type]: !modalState, ...otherModalData } });
   }
 
@@ -194,19 +210,17 @@ function LimitModal(props) {
 }
 
 function PurchaseModal(props) {
-  const { show, modalToggle, type, title, notice} = props;
+  const { show, modalToggle, type, notice} = props;
   if (!show) { return ''; }
   return (
-    <div className="LimitModal" role="tooltip" aria-hidden={!show}>
-      <div className="LimitModalArrow" />
-      <button type="button" className="LimitModalClose" onClick={(e) => { modalToggle(e, type); }}>
+    <div className="PurchaseModal" role="tooltip" aria-hidden={!show}>
+      <button type="button" className="PurchaseModalClose" onClick={(e) => { modalToggle(e, type); }}>
         <svg viewBox="0 0 17 17" width="17px" height="17px" aria-hidden="true">
           <path d="M 10.377 8.142 l 5.953 -5.954 l -2.234 -2.234 l -5.954 5.954 L 2.188 -0.046 L -0.046 2.188 l 5.954 5.954 l -5.954 5.954 l 2.234 2.234 l 5.954 -5.953 l 5.954 5.953 l 2.234 -2.234 Z" fill="currentColor" fillRule="evenOdd">Close</path>
         </svg>
       </button>
-      <div className="LimitModalInnerContent">
-        <p><span>{title}</span></p>
-        <div className="LimitModalMessage">
+      <div className="PurchaseModalInnerContent">
+        <div className="PurchaseModalMessage">
           <p>{notice}</p>
         </div>
       </div>
@@ -223,7 +237,12 @@ function PurchaseButton(props) {
 
   return (
     <div className="PurchaseButtonWrapper">
-      {/* <LimitModal show={purchaseModal} modalToggle={modalToggle} type="purchaseModal" title="Success!" notice={notice} /> */}
+      <PurchaseModal
+        show={purchaseModal}
+        modalToggle={modalToggle}
+        type="purchaseModal"
+        notice={notice}
+      />
       <button type="button" className="PurchaseButton" onClick={purchaseHandler} disabled={!buyAble}>
         {buttonText}
       </button>

@@ -31,8 +31,6 @@ class MainProductDetail extends React.Component {
   addToCart(quantity) {
     let { purchaseQuant: currentQuant } = this.state;
     currentQuant += quantity;
-    // eslint-disable-next-line no-alert
-    alert(`${quantity} added to cart`);
     this.setState({ purchaseQuant: currentQuant });
     // Requests.cartAdd(userData.userNum, itemData.itemNum, quantity)
   }
@@ -92,11 +90,15 @@ class MainProductDetail extends React.Component {
         />
         <div>Check Store Stock - Stretch Goal</div>
         <funcComps.SeriesLinks seriesTags={itemData.itemSeriesTags} />
-        {/* <div>{JSON.stringify(this.state)}</div> */}
       </div>
     );
   }
 }
+
+MainProductDetail.defaultProps = {
+  itemNum: 10276,
+  userNum: 1111,
+};
 
 MainProductDetail.propTypes = {
   itemNum: PropTypes.number,

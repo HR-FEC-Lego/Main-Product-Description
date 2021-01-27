@@ -23,16 +23,16 @@
     -webkit-box-align: center;
     align-items: center;
     transition: opacity 0.3s ease 0s;
-    svg {
-      height: 1.875rem;
-      width: 1.875rem;
-    }
-    span {
-      margin-left: 0.625rem;
-      font-size: 0.75rem;
-      line-height: 1.1875rem;
-      font-weight: 600;
-    }
+  }
+  svg {
+    height: 1.875rem;
+    width: 1.875rem;
+  }
+  span {
+    margin-left: 0.625rem;
+    font-size: 0.75rem;
+    line-height: 1.1875rem;
+    font-weight: 600;
   }
   .WishList {
     width: 50%;
