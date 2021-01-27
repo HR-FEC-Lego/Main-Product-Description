@@ -5,4 +5,4 @@
 **/vendor
 **/*.min.js
 **/db/mysql.config.js
-**/client/dist/
+**/client/dist/bundle.js
