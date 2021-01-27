@@ -1,10 +1,11 @@
 const faker = require('faker');
 const db = require('./db/dbSetup.js');
+const LegoData = require('./LEGOdata.js');
 
 let itemCols = [];
 let userCols = [];
-const itemDataSet = [];
-const userDataSet = [];
+const itemDataSet = [[...Object.values(LegoData.itemData)]];
+const userDataSet = [[...Object.values(LegoData.userData)]];
 
 const listGen = () => {
   const output = [];
