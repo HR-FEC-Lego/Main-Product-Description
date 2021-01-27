@@ -59,6 +59,7 @@
     }
   }
   .QuantityLimit {
+    position: relative;
     display: inline-flex;
     -webkit-box-align: center;
     align-items: center;
@@ -95,6 +96,7 @@
 }
 
 .PurchaseButtonWrapper {
+  position: relative;
   margin-bottom: 1.25rem;
   width: 100%;
   min-height: 3.125rem;
@@ -123,6 +125,60 @@
     }
     &:disabled {
       display: none;
+    }
+  }
+}
+
+.LimitModal {
+  position: absolute;
+  z-index: 2;
+  top: -15.125rem;
+  left: -9.1875rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 24px 0px;
+  background-color: rgb(255, 255, 255);
+  max-width: 25rem;
+  .LimitModalArrow {
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: rgb(255, 255, 255) transparent transparent;
+    margin: auto;
+    top: 100%;
+    bottom: unset;
+    left: 9.1875rem;
+  }
+  .LimitModalClose {
+    position: absolute;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    color: inherit;
+    width: 1.875rem;
+    height: 1.875rem;
+    z-index: 3;
+    position: absolute;
+    right: 0.4375rem;
+    top: 0.4375rem;
+  }
+  .LimitModalInnerContent {
+    font-size: 1rem;
+    margin: 1.25rem;
+    overflow: auto;
+    overflow-wrap: break-word;
+    line-height: 1.5625rem;
+    .LimitModalMessage {
+      width: 16.97rem;
+      white-space: normal;
+      font-size: 0.875rem;
+      color: inherit;
+      font-weight: 400;
+      white-space: normal;
     }
   }
 }

@@ -6,12 +6,17 @@ class AddToCart extends React.Component {
     super(props);
     this.state = {
       quantity: 1,
+      modals: {
+        limitModal: false,
+        purchaseModal: false,
+      }
     };
     this.quantityUp = this.quantityUp.bind(this);
     this.quantityDown = this.quantityDown.bind(this);
     this.purchaseClick = this.purchaseClick.bind(this);
     const { addToCart } = this.props;
     this.addToCart = addToCart;
+    this.modalToggle = this.modalToggle.bind(this);
   }
 
   quantityUp(e) {
@@ -29,11 +34,23 @@ class AddToCart extends React.Component {
   purchaseClick(e) {
     e.preventDefault();
     const { quantity } = this.state;
+    this.setState({ modals: { purchaseModal: true } });
     this.addToCart(quantity);
   }
 
+  modalToggle(e, type) {
+    e.preventDefault();
+    const {
+      modals: {
+        [type]: modalState,
+        ...otherModalData
+      },
+    } = this.state;
+    this.setState({ modals: { [type]: !modalState, ...otherModalData } });
+  }
+
   render() {
-    const { quantity } = this.state;
+    const { quantity, modals: { limitModal, purchaseModal } } = this.state;
     const { inStock, backOrder, quantLimit } = this.props;
     const buyAble = (inStock || backOrder);
     let buttonText = '';
@@ -58,12 +75,16 @@ class AddToCart extends React.Component {
             decreaseAction={this.quantityDown}
             increaseAction={this.quantityUp}
             quantLimit={quantLimit}
+            limitModal={limitModal}
+            modalToggle={this.modalToggle}
           />
         </div>
         <PurchaseButton
           buyAble={buyAble}
           buttonText={buttonText}
           purchaseHandler={this.purchaseClick}
+          purchaseModal={purchaseModal}
+          modalToggle={this.modalToggle}
         />
       </div>
 
@@ -79,7 +100,7 @@ function Availability(props) {
   } else if (backOrder) {
     output = (
       <span>
-        Backorders accepted, will ship in &nbsp;
+        Backorders accepted, will ship in&nbsp;
         {backOrder}
         &nbsp;days.
       </span>
@@ -96,7 +117,7 @@ function Availability(props) {
 
 function QuantityBar(props) {
   const {
-    quantity, decreaseAction, increaseAction, quantLimit
+    quantity, decreaseAction, increaseAction, quantLimit, limitModal, modalToggle,
   } = props;
   return (
     <div className="QuantityBar">
@@ -105,7 +126,7 @@ function QuantityBar(props) {
         <div className="QuantityShow">{quantity}</div>
         <QuantityButton action={increaseAction} name="QuantityIncrease" inActive={quantity >= quantLimit} />
       </div>
-      <QuantLimits quantLimit={quantLimit} />
+      <QuantLimits quantLimit={quantLimit} limitModal={limitModal} modalToggle={modalToggle} />
     </div>
   );
 }
@@ -135,32 +156,77 @@ function QuantityButton(props) {
 }
 
 function QuantLimits(props) {
-  function popupClick(e) {
-    e.preventDefault();
-    const notice = 'We restrict the limit a household can buy in order to be fair to all of our fans. If you\'ve already reached that limit through previous orders your order may be cancelled';
-    // eslint-disable-next-line no-alert
-    alert(notice);
-  }
-  const { quantLimit } = props;
+  const notice = 'We restrict the limit a household can buy in order to be fair to all of our fans. If you\'ve already reached that limit through previous orders your order may be cancelled';
+  const { quantLimit, limitModal, modalToggle } = props;
   return (
     <div className="QuantityLimit">
       <span>
         Limit &nbsp;
         {quantLimit}
       </span>
-      <button className="InfoButton" type="button" label="Click for more info" aria-label="Click for more info" onClick={popupClick}>
+      <button className="InfoButton" type="button" label="Click for more info" aria-label="Click for more info" onClick={(e) => { modalToggle(e, 'limitModal'); }}>
         <span>i</span>
       </button>
+      <LimitModal show={limitModal} modalToggle={modalToggle} type="limitModal" title="Limit" notice={notice} />
+    </div>
+  );
+}
+
+function LimitModal(props) {
+  const { show, modalToggle, type, title, notice} = props;
+  if (!show) { return ''; }
+  return (
+    <div className="LimitModal" role="tooltip" aria-hidden={!show}>
+      <div className="LimitModalArrow" />
+      <button type="button" className="LimitModalClose" onClick={(e) => { modalToggle(e, type); }}>
+        <svg viewBox="0 0 17 17" width="17px" height="17px" aria-hidden="true">
+          <path d="M 10.377 8.142 l 5.953 -5.954 l -2.234 -2.234 l -5.954 5.954 L 2.188 -0.046 L -0.046 2.188 l 5.954 5.954 l -5.954 5.954 l 2.234 2.234 l 5.954 -5.953 l 5.954 5.953 l 2.234 -2.234 Z" fill="currentColor" fillRule="evenOdd">Close</path>
+        </svg>
+      </button>
+      <div className="LimitModalInnerContent">
+        <p><span>{title}</span></p>
+        <div className="LimitModalMessage">
+          <p>{notice}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function PurchaseModal(props) {
+  const { show, modalToggle, type, title, notice} = props;
+  if (!show) { return ''; }
+  return (
+    <div className="LimitModal" role="tooltip" aria-hidden={!show}>
+      <div className="LimitModalArrow" />
+      <button type="button" className="LimitModalClose" onClick={(e) => { modalToggle(e, type); }}>
+        <svg viewBox="0 0 17 17" width="17px" height="17px" aria-hidden="true">
+          <path d="M 10.377 8.142 l 5.953 -5.954 l -2.234 -2.234 l -5.954 5.954 L 2.188 -0.046 L -0.046 2.188 l 5.954 5.954 l -5.954 5.954 l 2.234 2.234 l 5.954 -5.953 l 5.954 5.953 l 2.234 -2.234 Z" fill="currentColor" fillRule="evenOdd">Close</path>
+        </svg>
+      </button>
+      <div className="LimitModalInnerContent">
+        <p><span>{title}</span></p>
+        <div className="LimitModalMessage">
+          <p>{notice}</p>
+        </div>
+      </div>
     </div>
   );
 }
 
 function PurchaseButton(props) {
-  const { buyAble, buttonText, purchaseHandler } = props;
+  const notice = 'Added to Cart!';
+  const {
+    buyAble, buttonText,
+    purchaseHandler, purchaseModal, modalToggle
+  } = props;
 
   return (
     <div className="PurchaseButtonWrapper">
-      <button type="button" className="PurchaseButton" onClick={purchaseHandler} disabled={!buyAble}>{buttonText}</button>
+      {/* <LimitModal show={purchaseModal} modalToggle={modalToggle} type="purchaseModal" title="Success!" notice={notice} /> */}
+      <button type="button" className="PurchaseButton" onClick={purchaseHandler} disabled={!buyAble}>
+        {buttonText}
+      </button>
     </div>
   );
 }

@@ -59,11 +59,14 @@ export function SeriesLinks(props) {
     <div className="SeriesLinksContainer">
       Shop more like this:
       <ul className="SeriesLinksList">
-        {seriesTags.map((tag, index) => (
-          <li key={index} className="SeriesLinkEntry">
-            <a className="SeriesTag" href={`https://www.lego.com/en-us/categories/${tag}`}>{tag}</a>
-          </li>
-        ))}
+        {seriesTags.map((tag, index) => {
+          const tagLink = tag.replace(' ', '-');
+          return (
+            <li key={index} className="SeriesLinkEntry">
+              <a className="SeriesTag" href={`https://www.lego.com/en-us/categories/${tagLink}`}>{tag}</a>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
