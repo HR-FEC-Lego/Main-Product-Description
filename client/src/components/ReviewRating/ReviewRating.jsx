@@ -8,7 +8,7 @@ function ReviewRating(props) {
       <div className="RatingStars">
         <StarMap rating={rating} />
       </div>
-      <a className="ReviewCount" href="#reviews">
+      <a className="ReviewCount" href="#Review">
         {reviewCount}
         &nbsp;Reviews
       </a>

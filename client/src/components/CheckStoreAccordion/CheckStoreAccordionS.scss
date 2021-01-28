@@ -1,0 +1,179 @@
+.CheckStoreAccordionWrapper {
+  width: 100%;
+}
+
+.AccordionButton {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  &:focus {
+    outline: none;
+  }
+  .CheckStoreTitle {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    margin: 1.25rem 0px;
+    span {
+      margin: 0px;
+      text-align: left;
+      font-weight: 500;
+      font-size: 1rem;
+      line-height: 1.5625rem;
+    }
+    .AccordionIcon {
+      width: 1.5625rem;
+      height: 1.5625rem;
+      margin-right: 0.625rem;
+      position: relative;
+      border: 1px solid rgb(224, 224, 224);
+      border-radius: 50%;
+      background: rgb(255, 255, 255);
+      flex: 0 0 auto;
+      &::before {
+        transform: translate(-50%, -50%) rotate(-90deg);
+        width: 0.1875rem;
+        height: 1.125rem;
+        display: block;
+        content: "";
+        position: absolute;
+        background: rgb(0, 0, 0);
+        top: 50%;
+        left: 50%;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+      }
+      &::after {
+        width: 0.1875rem;
+        height: 1.125rem;
+        transform: translate(-50%, -50%) rotate(-180deg);
+        display: block;
+        position: absolute;
+        background: rgb(0, 0, 0);
+        top: 50%;
+        left: 50%;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+      }
+    }
+  }
+}
+.AccordionBodyWrapper {
+  transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  overflow: visible;
+  &::before {
+    content: "";
+    height: 0px;
+    display: block;
+  }
+  &::after {
+    content: "";
+    height: 0px;
+    display: block;
+  }
+  .AccordionBodyContent {
+    // overflow: visible;
+    height: auto;
+    position: relative;
+    &::before {
+      content: "";
+      height: 1px;
+      display: block;
+    }
+    &::after {
+      content: "";
+      height: 1px;
+      display: block;
+    }
+    .AccordionTextWrapper {
+      padding-bottom: 1.25rem;
+      p {
+        margin-top: 0px;
+        font-weight: 400;
+        font-size: 0.875rem;
+        line-height: 1.1875rem;
+        text-transform: inherit;
+      }
+      .inputWithButton {
+        display: flex;
+        width: 100%;
+        .inputWrapper {
+          flex: 1 1 0%;
+          position: relative;
+          width: 100%;
+          .inputLabel {
+            appearance: none;
+            display: flex;
+            flex-direction: column;
+            -webkit-box-align: stretch;
+            align-items: stretch;
+            -webkit-box-pack: start;
+            justify-content: flex-start;
+            width: 100%;
+            position: relative;
+            cursor: default;
+            .inputBar {
+              -webkit-box-flex: 1;
+              flex-grow: 1;
+              width: 100%;
+              background: rgb(255, 255, 255);
+              color: rgb(44, 44, 44);
+              height: 3.45rem;
+              padding: 1.125rem 1.25rem 0px;
+              border: 1px solid rgb(224, 224, 224);
+              &:focus{
+                outline: 0;
+              }
+              span {
+                appearance: none;
+                display: block;
+                position: absolute;
+                top: 0.9375rem;
+                left: 1.25rem;
+                transform-origin: left top;
+                transition: all 0.1s ease-in-out 0s;
+                transform: translate(0px, 0px);
+                color: rgb(117, 117, 117);
+                font-size: 1em;
+                white-space: nowrap;
+              }
+            }
+          }
+        }
+        .submitButton {
+          white-space: nowrap;
+          transform: translateX(-1px);
+          margin-right: -1px;
+          border-radius: 0px 0.3125rem 0.3125rem 0px;
+          padding: 0.9375rem;
+          box-shadow: none;
+          max-height: 100%;
+          padding-top: 0px;
+          padding-bottom: 0px;
+          display: inline-block;
+          width: auto;
+          border-width: 1px;
+          border-style: solid;
+          border-collapse: collapse;
+          text-align: center;
+          font-weight: 500;
+          font-size: 0.875rem;
+          line-height: 1.1875rem;
+          background-color: rgb(255, 255, 255);
+          border-color: rgb(0, 109, 183);
+          color: rgb(0, 0, 0);
+          svg {
+            display: block;
+            margin: auto;
+          }
+          &:focus{
+            outline: 0;
+          }
+        }
+      }
+    }
+  }
+}

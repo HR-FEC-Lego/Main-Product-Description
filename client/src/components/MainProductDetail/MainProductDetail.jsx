@@ -5,6 +5,7 @@ import funcComps from '../functionalComps/functionalComps';
 import ReviewRating from '../ReviewRating/ReviewRating';
 import AddToCart from '../AddToCart/AddToCart';
 import UserLists from '../UserLists/UserLists';
+import CheckStoreAccordion from '../CheckStoreAccordion/CheckStoreAccordion';
 import './MainProductDetailS.scss';
 
 class MainProductDetail extends React.Component {
@@ -88,7 +89,7 @@ class MainProductDetail extends React.Component {
           watchList={userData.watchListItems}
           listUpdate={this.listUpdate}
         />
-        <div>Check Store Stock - Stretch Goal</div>
+        <CheckStoreAccordion />
         <funcComps.SeriesLinks seriesTags={itemData.itemSeriesTags} />
       </div>
     );

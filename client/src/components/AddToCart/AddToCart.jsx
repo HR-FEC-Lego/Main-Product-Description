@@ -40,13 +40,13 @@ class AddToCart extends React.Component {
     e.preventDefault();
     const { quantity } = this.state;
     // use modalToggle
+    this.modalToggle(e, 'purchaseModal');
     this.setState({ modals: { purchaseModal: true } });
     this.addToCart(quantity);
   }
 
   modalClose(e) {
     e.preventDefault();
-    console.log(e);
     document.body.removeEventListener('click', this.modalClose);
     this.setState({ modals: { purchaseModal: false, limitModal: false } });
   }
