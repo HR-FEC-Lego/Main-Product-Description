@@ -6,3 +6,4 @@
 **/*.min.js
 **/db/mysql.config.js
 **/client/dist/bundle.js
+**/mysql57-community-release-el7-11.noarch.rpm
